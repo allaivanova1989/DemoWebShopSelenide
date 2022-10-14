@@ -66,8 +66,8 @@ public class NegativeTest extends BaseTest {
         homePage.clickOnRegister();
         RegisterData registerdata = FactoryRegisterData.getRegisterDataWithDigitsInFirstName();
         registerPage.createRegistration(registerdata);
+        registerPage.validateMessageInFirstNameIsExist();
 
-        assertTrue(registerPage.validateMessageInFirstNameIsExist());
     }
 
     @Test
@@ -75,8 +75,8 @@ public class NegativeTest extends BaseTest {
         homePage.clickOnRegister();
         RegisterData registerdata = FactoryRegisterData.getRegisterDataWithDigitsInLastName();
         registerPage.createRegistration(registerdata);
+        registerPage.validateMessageInLastNameIsExist();
 
-        assertTrue(registerPage.validateMessageInLastNameIsExist());
     }
 
     @Test
@@ -84,8 +84,8 @@ public class NegativeTest extends BaseTest {
         homePage.clickOnRegister();
         RegisterData registerdata = FactoryRegisterData.getRegisterDataWithSpecSymbolsInFirstName();
         registerPage.createRegistration(registerdata);
+        registerPage.validateMessageInFirstNameIsExist();
 
-        assertTrue(registerPage.validateMessageInFirstNameIsExist());
     }
 
     @Test
@@ -93,8 +93,8 @@ public class NegativeTest extends BaseTest {
         homePage.clickOnRegister();
         RegisterData registerdata = FactoryRegisterData.getRegisterDataWithSpecSymbolsInLastName();
         registerPage.createRegistration(registerdata);
+        registerPage.validateMessageInLastNameIsExist();
 
-        assertTrue(registerPage.validateMessageInLastNameIsExist());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class NegativeTest extends BaseTest {
         homePage.clickOnRegister();
         RegisterData registerdata = FactoryRegisterData.getRegisterDataWithoutSymbolInEmail();
         registerPage.createRegistration(registerdata);
+        registerPage.validateMessageInEmailIsExist();
 
-        assertTrue(registerPage.validateMessageInEmailIsExist());
     }
 }

@@ -6,6 +6,8 @@ import modals.RegisterData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static org.testng.Assert.assertTrue;
+
 @Log4j2
 public class RegisterPage extends BasePage {
 
@@ -45,23 +47,23 @@ public class RegisterPage extends BasePage {
     }
 
     @Step("Check if validate message is exist")
-    public boolean validateMessageInFirstNameIsExist() {
+    public void validateMessageInFirstNameIsExist() {
         log.info("Check if validate message is exist.");
-        return driver.findElement(validateMessageFirstName).isDisplayed();
+        assertTrue(driver.findElement(validateMessageFirstName).isDisplayed());
 
     }
 
     @Step("Check if validate message is exist")
-    public boolean validateMessageInLastNameIsExist() {
+    public void validateMessageInLastNameIsExist() {
         log.info("Check if validate message is exist.");
-        return driver.findElement(validateMessageLastName).isDisplayed();
+        assertTrue(driver.findElement(validateMessageLastName).isDisplayed());
 
     }
 
     @Step("Check if validate message is exist")
-    public boolean validateMessageInEmailIsExist() {
+    public void validateMessageInEmailIsExist() {
         log.info("Check if validate message is exist.");
-        return driver.findElement(validateMessageEmail).isDisplayed();
+        assertTrue(driver.findElement(validateMessageEmail).isDisplayed());
 
     }
 
