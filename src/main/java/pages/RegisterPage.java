@@ -1,15 +1,18 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import modals.RegisterData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
+import static com.codeborne.selenide.CollectionCondition.empty;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.Assert.assertTrue;
 
 @Log4j2
-public class RegisterPage extends BasePage {
+public class RegisterPage {
 
     public static By genderFemale = By.id("gender-female");
     public static By registerButton = By.id("register-button");
@@ -23,49 +26,59 @@ public class RegisterPage extends BasePage {
     public static By validateMessageLastName = By.xpath("//span[@for='LastName']");
     public static By validateMessageEmail = By.xpath("//span[@for='Email']");
 
-    public RegisterPage(WebDriver driver) {
-        super(driver);
-    }
-
     @Step("Fill in the fields for registration.")
     public void createRegistration(RegisterData registerData) {
         log.info("Fill in the fields for registration.");
-        driver.findElement(genderFemale).click();
-        driver.findElement(firstNameInput).sendKeys(registerData.getFirstName());
-        driver.findElement(lastNameInput).sendKeys(registerData.getLastName());
-        driver.findElement(emailInput).sendKeys(registerData.getEmail());
-        driver.findElement(passwordInput).sendKeys(registerData.getPassword());
-        driver.findElement(confirmPasswordInput).sendKeys(registerData.getConfirmPassword());
+        $(genderFemale).click();
+        $(firstNameInput).sendKeys(registerData.getFirstName());
+        $(lastNameInput).sendKeys(registerData.getLastName());
+        $(emailInput).sendKeys(registerData.getEmail());
+        $(passwordInput).sendKeys(registerData.getPassword());
+        $(confirmPasswordInput).sendKeys(registerData.getConfirmPassword());
 
     }
 
     @Step("Click on register.")
     public void clickOnRegisterButton() {
         log.info("Click on registerButton.");
-        driver.findElement(registerButton).click();
+        $(registerButton).click();
 
     }
 
     @Step("Check if validate message is exist")
     public void validateMessageInFirstNameIsExist() {
         log.info("Check if validate message is exist.");
-        assertTrue(driver.findElement(validateMessageFirstName).isDisplayed());
+
+        assertTrue($(validateMessageFirstName).isDisplayed());
 
     }
 
     @Step("Check if validate message is exist")
     public void validateMessageInLastNameIsExist() {
         log.info("Check if validate message is exist.");
-        assertTrue(driver.findElement(validateMessageLastName).isDisplayed());
+        assertTrue($(validateMessageLastName).isDisplayed());
 
     }
 
     @Step("Check if validate message is exist")
     public void validateMessageInEmailIsExist() {
         log.info("Check if validate message is exist.");
-        assertTrue(driver.findElement(validateMessageEmail).isDisplayed());
+        assertTrue($(validateMessageEmail).isDisplayed());
 
     }
 
 
+    @Step("Check if successfulRegistrationMessage is exist")
+    public void successfulRegistrationMessageIsExist() {
+        log.info("Check if successfulRegistrationMessage is exist.");
+        $(successfulRegistrationMessage).shouldBe(Condition.visible);
+
+    }
+
+    @Step("Check if successfulRegistrationMessage isn't exist")
+    public void successfulRegistrationMessageIsNotExist() {
+        log.info("Check if successfulRegistrationMessage isn't exist.");
+        $$(successfulRegistrationMessage).shouldBe(empty);
+
+    }
 }

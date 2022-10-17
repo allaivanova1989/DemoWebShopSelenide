@@ -4,9 +4,7 @@ import modals.FactoryRegisterData;
 import modals.RegisterData;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pages.*;
 
-import static org.testng.Assert.assertTrue;
 import static utils.PropertyReader.getProperty;
 
 public class NegativeTest extends BaseTest {
@@ -25,8 +23,7 @@ public class NegativeTest extends BaseTest {
     public void loginWithIncorrectData(String email, String password) {
         homePage.clickOnLogIn();
         loginPage.logIn(email, password);
-
-        assertTrue(driver.findElement(LoginPage.loginUnSuccessMessage).isDisplayed());
+        loginPage.checkIfLoginUnSuccessful();
     }
 
 
@@ -56,8 +53,7 @@ public class NegativeTest extends BaseTest {
 
         registerPage.createRegistration(registerData);
         registerPage.clickOnRegisterButton();
-
-        assertTrue(driver.findElements(RegisterPage.successfulRegistrationMessage).isEmpty());
+        registerPage.successfulRegistrationMessageIsNotExist();
     }
 
 
@@ -69,6 +65,7 @@ public class NegativeTest extends BaseTest {
         registerPage.validateMessageInFirstNameIsExist();
 
     }
+
 
     @Test
     public void registerWithDigitsInLastName() {

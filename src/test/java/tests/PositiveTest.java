@@ -16,16 +16,15 @@ public class PositiveTest extends BaseTest {
         RegisterData registerdata = FactoryRegisterData.getRegisterData();
         registerPage.createRegistration(registerdata);
         registerPage.clickOnRegisterButton();
+        registerPage.successfulRegistrationMessageIsExist();
 
-        assertTrue(driver.findElement(RegisterPage.successfulRegistrationMessage).isDisplayed());
     }
 
     @Test
     public void login() {
         homePage.clickOnLogIn();
         loginPage.logIn(getProperty("emailForLogin"), getProperty("password"));
-
-        assertTrue(driver.findElement(LoginPage.loginSuccessful).isDisplayed());
+        loginPage.checkIfLoginSuccessful();
     }
 
     @Test
@@ -33,8 +32,7 @@ public class PositiveTest extends BaseTest {
         homePage.clickOnLogIn();
         loginPage.logIn(getProperty("emailForLogin"), getProperty("password"));
         homePage.chooseNotebook();
-
-        assertTrue(driver.findElement(HomePage.successAdding).isDisplayed());
+        homePage.successAddingMessageIsExist();
         homePage.goToShopCart();
 
         assertTrue(shoppingCartPage.selectedProductIsExist(getProperty("modelOfNotebook")));
@@ -45,8 +43,7 @@ public class PositiveTest extends BaseTest {
         homePage.clickOnLogIn();
         loginPage.logIn(getProperty("emailForLogin"), getProperty("password"));
         homePage.chooseNotebook();
-
-        assertTrue(driver.findElement(HomePage.successAdding).isDisplayed());
+        homePage.successAddingMessageIsExist();
         homePage.goToShopCart();
 
         assertEquals(shoppingCartPage.getPriceOfOneProduct(), HomePage.price);
@@ -60,12 +57,10 @@ public class PositiveTest extends BaseTest {
         homePage.clickOnLogIn();
         loginPage.logIn(getProperty("emailForLogin"), getProperty("password"));
         homePage.chooseNotebook();
-
-        assertTrue(driver.findElement(HomePage.successAdding).isDisplayed());
+        homePage.successAddingMessageIsExist();
 
         homePage.goToShopCart();
         shoppingCartPage.changeQuantity();
-
         assertEquals(shoppingCartPage.getFinalSumOfProduct(), HomePage.price * shoppingCartPage.getQuantity());
 
 
@@ -76,13 +71,11 @@ public class PositiveTest extends BaseTest {
         homePage.clickOnLogIn();
         loginPage.logIn(getProperty("emailForLogin"), getProperty("password"));
         homePage.chooseNotebook();
-
-        assertTrue(driver.findElement(HomePage.successAdding).isDisplayed());
+        homePage.successAddingMessageIsExist();
 
         homePage.goToShopCart();
         shoppingCartPage.removeProduct();
-
-        assertTrue(driver.findElement(ShoppingCartPage.emptyCartMessage).isDisplayed());
+        shoppingCartPage.checkEmptyCartMessage();
 
 
     }
@@ -90,8 +83,7 @@ public class PositiveTest extends BaseTest {
     @Test
     public void search() {
         homePage.searchTheProduct(getProperty("modelOfBook"));
-
-        assertEquals(driver.findElement(HomePage.firstFoundedProduct).getText(), getProperty("modelOfBook"));
+        assertEquals(homePage.getTextOfFirstFoundProduct(), getProperty("modelOfBook"));
 
 
     }
