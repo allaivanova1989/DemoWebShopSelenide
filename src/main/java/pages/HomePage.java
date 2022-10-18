@@ -4,11 +4,11 @@ import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 @Log4j2
 public class HomePage {
@@ -56,8 +56,7 @@ public class HomePage {
     @Step("Go to shopping cart.")
     public void goToShopCart() {
         log.info("Go to shopping cart.");
-        WebDriverWait wait = new WebDriverWait(getWebDriver(), 15);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(successAdding));
+        $(successAdding).should(disappear, Duration.ofSeconds(15));
         $(shoppingCart).click();
 
 

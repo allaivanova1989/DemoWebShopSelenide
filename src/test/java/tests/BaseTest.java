@@ -11,6 +11,7 @@ import pages.LoginPage;
 import pages.RegisterPage;
 import pages.ShoppingCartPage;
 import io.qameta.allure.selenide.AllureSelenide;
+import com.codeborne.selenide.testng.ScreenShooter;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -26,11 +27,13 @@ public class BaseTest {
     @BeforeMethod(description = "Setup and start browser")
     public void setup() {
         log.info("Setup settings");
-        Configuration.headless = true;
+//        Configuration.headless = true;
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demowebshop.tricentis.com";
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().includeSelenideSteps(false).savePageSource(false));
+
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
+
         Configuration.timeout = 10000;
 
         homePage = new HomePage();

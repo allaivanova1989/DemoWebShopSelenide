@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static org.testng.Assert.assertTrue;
 
 @Log4j2
 public class RegisterPage {
@@ -48,22 +47,20 @@ public class RegisterPage {
     @Step("Check if validate message is exist")
     public void validateMessageInFirstNameIsExist() {
         log.info("Check if validate message is exist.");
-
-        assertTrue($(validateMessageFirstName).isDisplayed());
-
+        $(validateMessageFirstName).shouldBe(Condition.visible);
     }
 
     @Step("Check if validate message is exist")
     public void validateMessageInLastNameIsExist() {
         log.info("Check if validate message is exist.");
-        assertTrue($(validateMessageLastName).isDisplayed());
+        $(validateMessageLastName).shouldBe(Condition.visible);
 
     }
 
     @Step("Check if validate message is exist")
     public void validateMessageInEmailIsExist() {
         log.info("Check if validate message is exist.");
-        assertTrue($(validateMessageEmail).isDisplayed());
+        $(validateMessageEmail).shouldBe(Condition.visible);
 
     }
 

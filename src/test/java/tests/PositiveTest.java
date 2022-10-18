@@ -58,7 +58,6 @@ public class PositiveTest extends BaseTest {
         loginPage.logIn(getProperty("emailForLogin"), getProperty("password"));
         homePage.chooseNotebook();
         homePage.successAddingMessageIsExist();
-
         homePage.goToShopCart();
         shoppingCartPage.changeQuantity();
         assertEquals(shoppingCartPage.getFinalSumOfProduct(), HomePage.price * shoppingCartPage.getQuantity());
@@ -72,7 +71,6 @@ public class PositiveTest extends BaseTest {
         loginPage.logIn(getProperty("emailForLogin"), getProperty("password"));
         homePage.chooseNotebook();
         homePage.successAddingMessageIsExist();
-
         homePage.goToShopCart();
         shoppingCartPage.removeProduct();
         shoppingCartPage.checkEmptyCartMessage();
@@ -84,7 +82,6 @@ public class PositiveTest extends BaseTest {
     public void search() {
         homePage.searchTheProduct(getProperty("modelOfBook"));
         assertEquals(homePage.getTextOfFirstFoundProduct(), getProperty("modelOfBook"));
-
 
     }
 }
