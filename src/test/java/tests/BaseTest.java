@@ -11,7 +11,6 @@ import pages.LoginPage;
 import pages.RegisterPage;
 import pages.ShoppingCartPage;
 import io.qameta.allure.selenide.AllureSelenide;
-import com.codeborne.selenide.testng.ScreenShooter;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
