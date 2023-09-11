@@ -26,7 +26,7 @@ public class BaseTest {
     @BeforeMethod(description = "Setup and start browser")
     public void setup() {
         log.info("Setup settings");
-//        Configuration.headless = true;
+        Configuration.headless = true;
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demowebshop.tricentis.com";
