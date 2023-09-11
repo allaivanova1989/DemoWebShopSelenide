@@ -39,6 +39,7 @@ public class BaseTest {
         loginPage = new LoginPage();
         registerPage = new RegisterPage();
         shoppingCartPage = new ShoppingCartPage();
+        System.setProperty("chromeoptions.args", "--remote-allow-origins=*");
 
         open("");
 
